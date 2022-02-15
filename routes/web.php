@@ -29,7 +29,9 @@ Route::post('/messages', [App\Http\Controllers\ChatController::class, 'sendMessa
 
 Route::get('/card', [App\Http\Controllers\CardController::class, 'index']);
 Route::get('/getCards', [App\Http\Controllers\CardController::class, 'getCards']);
+Route::get('/search_card', [App\Http\Controllers\CardController::class, 'searchcard']);
 Route::post('/createcard', [App\Http\Controllers\CardController::class, 'createcard']);
+
 
 Route::get('/parameters', [App\Http\Controllers\ParametersController::class, 'index']);
 Route::post('/createparameters', [App\Http\Controllers\ParametersController::class, 'createparameters']);
@@ -42,13 +44,14 @@ Route::get('/search_user', [App\Http\Controllers\UserController::class, 'searchu
 Route::get('/allUsers', [App\Http\Controllers\UserController::class, 'allUsers']);
 Route::get('/listuser', [App\Http\Controllers\UserController::class, 'listuser']);
 Route::get('/getCardsUser',[App\Http\Controllers\UserController::class, 'getCardsUser']);
+Route::post('/moves', [App\Http\Controllers\UserController::class, 'moveAvatar']);
 
 Route::get('/game', [App\Http\Controllers\SessionController::class, 'index']);
 Route::get('/getSession', [App\Http\Controllers\SessionController::class, 'getSession']);
 Route::post('/creategame', [App\Http\Controllers\SessionController::class, 'creategame']);
 
 
-Route::get('/sessiongame', [App\Http\Controllers\SessionController::class, 'start']);
+Route::get('/sessiongame/{idSession}', [App\Http\Controllers\SessionController::class, 'start']);
 Route::post('/upload', [App\Http\Controllers\MapsController::class, 'upload']);
 Route::post('/uploadMusic', [App\Http\Controllers\SoundsController::class, 'uploadMusic']);
 
@@ -60,3 +63,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home']);
 
 Route::post('/createnote', [App\Http\Controllers\NotesController::class, 'createnote']);
 Route::get('/getNote', [App\Http\Controllers\NotesController::class, 'getNote']);
+
+Route::get('/cardparameters', [App\Http\Controllers\ParametersController::class, 'cardparameters']);
+Route::get('/getParameters', [App\Http\Controllers\ParametersController::class, 'getParameters']);
+
+Route::get('/test/{idSession}', [App\Http\Controllers\TestController::class, 'index']);
+Route::get('/fetchAllMap', [App\Http\Controllers\TestController::class, 'fetchAllMap']);
+Route::post('/sendMap', [App\Http\Controllers\TestController::class, 'sendMap']);
+Route::post('/delet/{idMaps}', [App\Http\Controllers\TestController::class, 'destroy']);
+
+Route::get('/fetchAllAvatar', [App\Http\Controllers\TestController::class, 'fetchAllAvatar']);
+Route::post('/createAvatar', [App\Http\Controllers\TestController::class, 'createAvatar']);
+Route::post('/updateAvatar', [App\Http\Controllers\TestController::class, 'updateAvatar']);

@@ -18,9 +18,9 @@ class SessionController extends Controller
         return view('game');
     }
 
-    public function start()
+    public function start(Session $idSession)
     {
-        return view('sessiongame');
+        return view('sessiongame',['idSession' => $idSession]);
     }
 
     public function allSessions()

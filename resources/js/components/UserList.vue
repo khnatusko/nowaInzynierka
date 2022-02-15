@@ -57,7 +57,7 @@
         },
         methods:{          
             listUsers(page = 1) {
-                axios.get('/userlist?page=' + page).then(response =>{
+                axios.get('/listuser?page=' + page).then(response =>{
                     this.users = response.data;
                 });
             },

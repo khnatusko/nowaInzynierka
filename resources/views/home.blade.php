@@ -17,6 +17,12 @@
                     {{ __('You are logged in!') }}
                     <a href="{{ url('/chat') }}">Chat</a>
                     <a href="{{ url('/sessiongame') }}">SessionGame</a>
+                    <a href="{{ url('/card') }}">Card</a>
+                    <a href="{{ url('/profile') }}">Profile</a>
+                    <a href="{{ url('/userlist') }}">Userlist</a>
+                    <a href="{{ url('/game') }}">CreateGame</a>
+                    <a href="{{ url('/parameters') }}">CreateParameters</a>
+                    <a href="{{ url('/usercard') }}">UserCard</a>
                 </div>
             </div>
         </div>

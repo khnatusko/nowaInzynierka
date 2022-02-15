@@ -44,4 +44,11 @@ class CardController extends Controller
         return response()->json($cards);
     }
 
+    public function searchcard(Request $request){
+        
+        $card = CardsCharacters::where('idCardsCharacters','LIKE','%'.$request->keyword.'%')->get();
+
+        return response()->json($card);
+    }
+
 }

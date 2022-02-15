@@ -11,7 +11,7 @@ class Notes extends Model
     use HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'idNotes';
-    protected $fillable = ['idNotes','Title','Session_idSession','Date'];
+    protected $fillable = ['idNotes','Title','Date','Session_idSession'];
     protected $guarded = [];
     protected $table = 'notes';
 

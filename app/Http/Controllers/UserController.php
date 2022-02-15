@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     public function listuser(){
-        $users = User::orderBy('idUser', 'asc')->paginate(5);
+        $users = User::orderBy('idUser', 'asc')->paginate(1);
         return response()->json($users);
     }
 
@@ -52,7 +52,16 @@ class UserController extends Controller
 
     public function getCardsUser(){
 
-        return CardsCharacters::where('User_idUser','=',Auth::id())->get();
+        $cards = CardsCharacters::where('User_idUser','=',Auth::id())->get();
+        return response()->json($cards);
+    }
+
+    public function moveAvatar(Request $request)
+    {
+        $user = Auth::user();
+
+        broadcast(new MoveEvent($user))->toOthers();
+        return ['status' => 'Object Move!'];
     }
 
     

@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Chat;
 use App\Models\CardsCharacters;
 use App\Models\Notes;
+use App\Models\Avatar;
+use App\Models\Maps;
 
 class User extends Authenticatable
 {
@@ -37,6 +39,16 @@ class User extends Authenticatable
 
     public function notes()
     {
-        return $this->belongsToMany(Notes::class,'user_has_notes','User_idUser','Notes_idNotes')->withPivot('text');
+        return $this->belongsToMany(Notes::class,'user_has_notes','User_idUser','notes_idNotes')->withPivot('text');
+    }
+
+    public function icons()
+    {
+        return $this->hasMany(Avatar::class);
+    }
+
+    public function mapy()
+    {
+        return $this->hasMany(Maps::class);
     }
 }

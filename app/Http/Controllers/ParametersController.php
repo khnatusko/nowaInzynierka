@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Parameters;
+use App\Models\CardsCharacters;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\JoinClause;
 
 class ParametersController extends Controller
 {
@@ -45,4 +49,30 @@ class ParametersController extends Controller
         ]);
     
     }
+
+    public function cardparameters()
+    {
+        return view('cardparameters');
+    }
+
+    public function getParameters()
+    {
+        $usercard = CardsCharacters::where('User_idUser','=',Auth::id())->get();
+
+        //  $parametrcard = DB::table('parameters')
+        //                      ->join('cardscharacters_has_parameters', 'parameters.idParamiters', '=', 'cardscharacters_has_parameters.Parameters_idParamiters')
+        //                      ->get();
+
+        $parametrcard = DB::table('cardscharacters_has_parameters')
+                            ->join('parameters', 'cardscharacters_has_parameters.Parameters_idParamiters', '=', 'parameters.idParamiters')
+                            ->join('cardscharacters', 'cardscharacters_has_parameters.CardsCharacters_idCardsCharacters', '=', 'cardscharacters.idCardsCharacters')
+                            ->where('cardscharacters.User_idUser','=',Auth::id())
+                            ->select('parameters.name', 'cardscharacters_has_parameters.value', 'cardscharacters.idCardsCharacters')
+                            ->get();
+        
+        //$parametrcard = Parameters::with('card')->get();
+
+        return response()->json($parametrcard);                     
+    }
+
 }

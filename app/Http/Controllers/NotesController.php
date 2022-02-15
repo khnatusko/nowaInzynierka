@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NotesEvent;
 use App\Models\Notes;
 use App\Models\User_has_Notes;
 
@@ -24,7 +25,7 @@ class NotesController extends Controller
 
         $notes->usernote()->attach($user,['text'=>$text]);
                
-     
+
         return response()->json([
             'success' => true,
             'status_code'=>200,
